@@ -4,7 +4,7 @@ AUTHOR.  Michael Coughlan.
 ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.
 FILE-CONTROL.
-    Select ShopReceiptsFile  ASSIGN TO "Listing8-1-ShopSales.Dat"
+    Select ShopReceiptsFile  ASSIGN TO "Listing8-1-ShopSales.dat"
             ORGANIZATION IS LINE SEQUENTIAL.
 
 DATA DIVISION.
