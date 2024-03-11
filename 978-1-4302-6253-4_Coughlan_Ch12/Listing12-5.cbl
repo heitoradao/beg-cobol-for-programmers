@@ -1,63 +1,67 @@
-IDENTIFICATION DIVISION.
-PROGRAM-ID. Debug3.
-AUTHOR.  Michael Coughlan.
-ENVIRONMENT DIVISION.
-INPUT-OUTPUT SECTION.
-FILE-CONTROL.
-    SELECT PersonFile ASSIGN TO "PERSON.DAT"
-           ORGANIZATION IS LINE SEQUENTIAL.
-           
-DATA DIVISION.
-FILE SECTION.
-FD PersonFile.
-01 PersonRec                PIC X(10).
-   88 EndOfFile             VALUE HIGH-VALUES.
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. Debug3.
+       AUTHOR.  Michael Coughlan.
 
-WORKING-STORAGE SECTION.
-01 Surname                  PIC X(10).
-   88 EndOfData             VALUE SPACES.
-01 Quotient                 PIC 9(3).
-01 Rem                      PIC 9(3).
-01 NumberOfPeople           PIC 9(3) VALUE ZERO.
+       ENVIRONMENT DIVISION.
+       INPUT-OUTPUT SECTION.
+       FILE-CONTROL.
+           SELECT PersonFile ASSIGN TO "PERSON.DAT"
+                  ORGANIZATION IS LINE SEQUENTIAL.
 
-PROCEDURE DIVISION.
-Begin.
-   OPEN OUTPUT PersonFile 
-   DISPLAY "Debug3"
-   DISPLAY "Enter list of Surnames."
-   DISPLAY "Press RETURN after each name."
-   DISPLAY "To finish press return with no value."
-   DISPLAY "This will fill Surname with spaces"
-   DISPLAY "Name -> " WITH NO ADVANCING
-   ACCEPT Surname
-   PERFORM GetPersons UNTIL EndOfData
-   CLOSE PersonFile 
+       DATA DIVISION.
+       FILE SECTION.
+       FD PersonFile.
+       01 PersonRec                PIC X(10).
+          88 EndOfFile             VALUE HIGH-VALUES.
 
-   OPEN INPUT PersonFile
-   READ PersonFile 
-       AT END SET EndOfFile TO TRUE
-   END-READ
-   PERFORM CountPersons UNTIL EndOfFile.
-   CLOSE PersonFile
+       WORKING-STORAGE SECTION.
+       01 Surname                  PIC X(10).
+          88 EndOfData             VALUE SPACES.
+       01 Quotient                 PIC 9(3).
+       01 Rem                      PIC 9(3).
+       01 NumberOfPeople           PIC 9(3) VALUE ZERO.
 
-   DIVIDE NumberOfPeople BY 2
-      GIVING Quotient REMAINDER Rem
+       PROCEDURE DIVISION.
+       Begin.
+           OPEN OUTPUT PersonFile
+           DISPLAY "Debug3"
+           DISPLAY "Enter list of Surnames."
+           DISPLAY "Press RETURN after each name."
+           DISPLAY "To finish press return with no value."
+           DISPLAY "This will fill Surname with spaces"
+           DISPLAY "Name -> " WITH NO ADVANCING
+           ACCEPT Surname
+           PERFORM GetPersons UNTIL EndOfData
+           CLOSE PersonFile
 
-   IF Rem = 0
-       DISPLAY "Even number of people"
-    ELSE
-       DISPLAY "Odd number of people"
+           OPEN INPUT PersonFile
+           READ PersonFile
+               AT END SET EndOfFile TO TRUE
+           END-READ
+           PERFORM CountPersons UNTIL EndOfFile.
+           CLOSE PersonFile
 
-   STOP RUN.
+           DIVIDE NumberOfPeople BY 2
+              GIVING Quotient REMAINDER Rem
 
-GetPersons.
-   WRITE PersonRec FROM Surname
-   DISPLAY "Name -> " WITH NO ADVANCING
-   ACCEPT Surname.
+           IF Rem = 0
+               DISPLAY "Even number of people"
+            ELSE
+               DISPLAY "Odd number of people"
 
-CountPersons.
-   DISPLAY PersonRec
-   ADD 1 TO NumberOfPeople
-   READ PersonFile 
-      AT END SET EndOfFile TO TRUE
-   END-READ.
+           STOP RUN
+           .
+
+       GetPersons.
+          WRITE PersonRec FROM Surname
+          DISPLAY "Name -> " WITH NO ADVANCING
+          ACCEPT Surname
+          .
+
+       CountPersons.
+           DISPLAY PersonRec
+           ADD 1 TO NumberOfPeople
+           READ PersonFile
+             AT END SET EndOfFile TO TRUE
+           END-READ
+           .
