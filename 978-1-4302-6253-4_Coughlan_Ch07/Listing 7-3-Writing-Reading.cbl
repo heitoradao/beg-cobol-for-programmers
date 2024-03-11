@@ -24,30 +24,30 @@
 
        PROCEDURE DIVISION.
        Begin.
-          OPEN EXTEND EmployeeFile
-          PERFORM GetEmployeeData
-          PERFORM UNTIL EmployeeDetails = SPACES
-             WRITE EmployeeDetails
-             PERFORM GetEmployeeData
-          END-PERFORM
-          CLOSE EmployeeFile
-          DISPLAY "************* End of Input ****************"
+           OPEN EXTEND EmployeeFile
+           PERFORM GetEmployeeData
+           PERFORM UNTIL EmployeeDetails = SPACES
+              WRITE EmployeeDetails
+              PERFORM GetEmployeeData
+           END-PERFORM
+           CLOSE EmployeeFile
+           DISPLAY "************* End of Input ****************"
 
-          OPEN INPUT EmployeeFile
-          READ EmployeeFile
-            AT END SET EndOfEmployeeFile TO TRUE
-          END-READ
-          PERFORM UNTIL EndOfEmployeeFile
-             DISPLAY EmployeeDetails
-             READ EmployeeFile
-               AT END SET EndOfEmployeeFile TO TRUE
-             END-READ
-          END-PERFORM
-          CLOSE EmployeeFile
-          STOP RUN.
+           OPEN INPUT EmployeeFile
+           READ EmployeeFile
+             AT END SET EndOfEmployeeFile TO TRUE
+           END-READ
+           PERFORM UNTIL EndOfEmployeeFile
+              DISPLAY EmployeeDetails
+              READ EmployeeFile
+                AT END SET EndOfEmployeeFile TO TRUE
+              END-READ
+           END-PERFORM
+           CLOSE EmployeeFile
+           STOP RUN
+           .
 
        GetEmployeeData.
-          DISPLAY "nnnnnnnnnSSSSSSSSSSSSSSSFFFFFFFFFFyyyyMMddG"
-          ACCEPT EmployeeDetails.
-
-
+           DISPLAY "nnnnnnnnnSSSSSSSSSSSSSSSFFFFFFFFFFyyyyMMddG"
+           ACCEPT EmployeeDetails
+           .
