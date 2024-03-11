@@ -24,15 +24,15 @@
 
        PROCEDURE DIVISION.
        Begin.
-          OPEN INPUT EmployeeFile
-          READ EmployeeFile
-            AT END SET EndOfEmployeeFile TO TRUE
-          END-READ
-          PERFORM UNTIL EndOfEmployeeFile
+           OPEN INPUT EmployeeFile
+           READ EmployeeFile
+             AT END SET EndOfEmployeeFile TO TRUE
+           END-READ
+           PERFORM UNTIL EndOfEmployeeFile
              READ EmployeeFile
                AT END SET EndOfEmployeeFile TO TRUE
              END-READ
-          END-PERFORM
-          CLOSE EmployeeFile
-          STOP RUN.
-       Listing 7-1  Reading the Employee file
+           END-PERFORM
+           CLOSE EmployeeFile
+           STOP RUN
+           .

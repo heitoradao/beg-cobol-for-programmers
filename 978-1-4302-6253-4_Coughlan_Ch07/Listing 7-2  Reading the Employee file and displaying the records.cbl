@@ -24,17 +24,17 @@
 
        PROCEDURE DIVISION.
        Begin.
-          OPEN INPUT EmployeeFile
-          READ EmployeeFile
-            AT END SET EndOfEmployeeFile TO TRUE
-          END-READ
-          PERFORM UNTIL EndOfEmployeeFile
+           OPEN INPUT EmployeeFile
+           READ EmployeeFile
+             AT END SET EndOfEmployeeFile TO TRUE
+           END-READ
+           PERFORM UNTIL EndOfEmployeeFile
              DISPLAY EmpForename SPACE EmpSurname " - "
                      EmpMOB "/" EmpDOB "/" EmpYOB
              READ EmployeeFile
                AT END SET EndOfEmployeeFile TO TRUE
              END-READ
-          END-PERFORM
-          CLOSE EmployeeFile
-          STOP RUN.
-
+           END-PERFORM
+           CLOSE EmployeeFile
+           STOP RUN
+           .
