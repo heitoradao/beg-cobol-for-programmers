@@ -1,17 +1,18 @@
-IDENTIFICATION DIVISION.
-PROGRAM-ID. Listing9-2.
-AUTHOR. Michael Coughlan.
-ENVIRONMENT DIVISION.
-CONFIGURATION SECTION.
-SPECIAL-NAMES.
-    CURRENCY SIGN IS "£"
-    
-DATA DIVISION.
-WORKING-STORAGE SECTION.
-01 Edit1     PIC  £££,££9.99.
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. Listing9-2.
+       AUTHOR. Michael Coughlan.
+       ENVIRONMENT DIVISION.
+       CONFIGURATION SECTION.
+       SPECIAL-NAMES.
+           CURRENCY SIGN IS "£"
 
-PROCEDURE DIVISION.
-Begin.
-   MOVE 12345.95 TO Edit1
-   DISPLAY "Edit1 = " Edit1
-   STOP RUN.
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01 Edit1     PIC  £££,££9.99.
+
+       PROCEDURE DIVISION.
+       Begin.
+          MOVE 12345.95 TO Edit1
+          DISPLAY "Edit1 = " Edit1
+          STOP RUN
+          .
