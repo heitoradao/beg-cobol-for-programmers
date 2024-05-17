@@ -10,16 +10,16 @@
 
        DATA DIVISION.
        FILE SECTION.
-       FD PersonFile.
-       01 PersonRec                PIC X(10).
-          88 EndOfFile             VALUE HIGH-VALUES.
+       FD  PersonFile.
+       01  PersonRec                PIC X(10).
+           88 EndOfFile             VALUE HIGH-VALUES.
 
        WORKING-STORAGE SECTION.
-       01 Surname                  PIC X(10).
-          88 EndOfData             VALUE SPACES.
-       01 Quotient                 PIC 9(3).
-       01 Rem                      PIC 9(3).
-       01 NumberOfPeople           PIC 9(3) VALUE ZERO.
+       01  Surname                  PIC X(10).
+           88 EndOfData             VALUE SPACES.
+       01  Quotient                 PIC 9(3).
+       01  Rem                      PIC 9(3).
+       01  NumberOfPeople           PIC 9(3) VALUE ZERO.
 
        PROCEDURE DIVISION.
        Begin.
@@ -46,7 +46,7 @@
 
            IF Rem = 0
                DISPLAY "Even number of people"
-            ELSE
+           ELSE
                DISPLAY "Odd number of people"
 
            STOP RUN
@@ -62,6 +62,6 @@
            DISPLAY PersonRec
            ADD 1 TO NumberOfPeople
            READ PersonFile
-             AT END SET EndOfFile TO TRUE
+               AT END SET EndOfFile TO TRUE
            END-READ
            .

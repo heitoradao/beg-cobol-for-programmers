@@ -1,10 +1,13 @@
        IDENTIFICATION DIVISION.
        PROGRAM-ID. Listing12-1.
       * AUTHOR.  Michael Coughlan.
-      * This program produces a summary report showing the sales of base oils
-      * to Aromamora customers by processing the OilSalesFile.  The OilSalesFile is a
-      * sequential file ordered on ascending CustomerId.  The report is required to be
-      * printed in ascending CustomerId order.
+      * This program produces a summary report showing the sales of base
+      * oils
+      * to Aromamora customers by processing the OilSalesFile.
+      * The OilSalesFile is a sequential file ordered on ascending
+      *   CustomerId.
+      * The report is required to be printed in ascending
+      * CustomerId order.
 
        ENVIRONMENT DIVISION.
        INPUT-OUTPUT SECTION.
