@@ -1,40 +1,54 @@
+      *------------------------------------------------------
        IDENTIFICATION DIVISION.
+      *------------------------------------------------------
        PROGRAM-ID. Listing7-2.
        AUTHOR. Michael Coughlan.
+
+      *------------------------------------------------------
        ENVIRONMENT DIVISION.
+      *------------------------------------------------------
        INPUT-OUTPUT SECTION.
        FILE-CONTROL.
           SELECT EmployeeFile ASSIGN TO "Employee.dat"
                  ORGANIZATION IS SEQUENTIAL.
 
+      *------------------------------------------------------
        DATA DIVISION.
+      *------------------------------------------------------
        FILE SECTION.
        FD EmployeeFile.
-       01 EmployeeDetails.
-          88  EndOfEmployeeFile   VALUE HIGH-VALUES.
-          02  EmpSSN              PIC 9(9).
-          02  EmpName.
-              03 EmpSurname       PIC X(15).
-              03 EmpForename      PIC X(10).
-          02  EmpDateOfBirth.
-              03 EmpYOB           PIC 9(4).
-              03 EmpMOB           PIC 99.
-              03 EmpDOB           PIC 99.
-          02  EmpGender           PIC X.
+           COPY "EMPLOYEE.CPY".
 
+      *------------------------------------------------------
        PROCEDURE DIVISION.
+      *------------------------------------------------------
        Begin.
            OPEN INPUT EmployeeFile
            READ EmployeeFile
              AT END SET EndOfEmployeeFile TO TRUE
            END-READ
            PERFORM UNTIL EndOfEmployeeFile
-             DISPLAY EmpForename SPACE EmpSurname " - "
-                     EmpMOB "/" EmpDOB "/" EmpYOB
-             READ EmployeeFile
-               AT END SET EndOfEmployeeFile TO TRUE
-             END-READ
+             PERFORM 230000-ProcessFile
+             PERFORM 200000-ReadHeader
            END-PERFORM
-           CLOSE EmployeeFile
+           PERFORM 210000-CloseFile
            STOP RUN
            .
+
+
+       200000-ReadHeader.
+           READ EmployeeFile
+             AT END SET EndOfEmployeeFile TO TRUE
+           END-READ
+           .
+
+
+       210000-CloseFile.
+           CLOSE EmployeeFile
+           .
+
+       230000-ProcessFile.
+           DISPLAY EmpForename SPACE EmpSurname ' - '
+                   EmpDOB '/' EmpMOB '/' EmpYOB
+           .
+

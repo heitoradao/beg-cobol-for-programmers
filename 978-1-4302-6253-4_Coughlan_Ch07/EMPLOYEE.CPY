@@ -9,5 +9,4 @@
        05      EmpMOB            PIC 99.
        05      EmpDOB            PIC 99.
        03    EmpGender           PIC X.
-       03    LineEnding          PIC X.
 

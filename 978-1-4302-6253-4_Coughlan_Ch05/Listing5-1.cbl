@@ -6,7 +6,7 @@
        ENVIRONMENT DIVISION.
        CONFIGURATION SECTION.
        SPECIAL-NAMES.
-           CLASS HexNumber   IS "0" THRU "9", "A" THRU "F".
+           CLASS HexNumber   IS "0" THRU "9", "A" THRU "F","a" THRU "f".
            CLASS RealName    IS "A" THRU "Z", "a" THRU "z", "'", SPACE.
 
        DATA DIVISION.
@@ -18,7 +18,7 @@
        Begin.
            DISPLAY "Enter a Hex number - " WITH NO ADVANCING
            ACCEPT NumIn.
-           IF NumIn IS HexNumber THEN
+           IF NumIn IS HexNumber
                DISPLAY NumIn " is a Hex number"
            ELSE
                DISPLAY NumIn " is not a Hex number"
@@ -33,7 +33,7 @@
                DISPLAY NameIn " is not alphabetic"
            END-IF
 
-           IF NameIn IS RealName THEN
+           IF NameIn IS RealName
                DISPLAY NameIn " is a real name"
            ELSE
                DISPLAY NameIn " is not a real name"
