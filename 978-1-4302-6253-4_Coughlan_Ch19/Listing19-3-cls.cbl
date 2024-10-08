@@ -1,19 +1,19 @@
-      $SET ISO2002 
-      $SET DIALECT"ISO2002"  
+      $SET ISO2002
+      $SET DIALECT"ISO2002"
       $SET SOURCEFORMAT"FREE"
 CLASS-ID. Zodiac AS "zodiac" INHERITS FROM Base.
-* AUTHOR. Michael Coughlan.  
+* AUTHOR. Michael Coughlan.
 
 REPOSITORY.
-    CLASS BASE AS "base"  
+    CLASS BASE AS "base"
     CLASS Zodiac AS "zodiac".
 
-* No FACTORY in this program       
+* No FACTORY in this program
 
 OBJECT.
 WORKING-STORAGE SECTION.
 01 ZodiacTable.
-   02 ZodiacTableData.             
+   02 ZodiacTableData.
       03 FILLER   PIC X(20) VALUE "Aries      103210419".
       03 FILLER   PIC X(20) VALUE "Taurus     204200520".
       03 FILLER   PIC X(20) VALUE "Gemini     305210620".
@@ -26,8 +26,8 @@ WORKING-STORAGE SECTION.
       03 FILLER   PIC X(20) VALUE "Capricorn  212221231".
       03 FILLER   PIC X(20) VALUE "Aquarius   301200218".
       03 FILLER   PIC X(20) VALUE "Pisces     402190320".
-   02 ZodiacSign REDEFINES ZodiacTableData 
-                 OCCURS 12 TIMES 
+   02 ZodiacSign REDEFINES ZodiacTableData
+                 OCCURS 12 TIMES
                  INDEXED BY Zidx.
       03 SignName        PIC X(11).
       03 SignElement     PIC 9.
@@ -104,7 +104,7 @@ METHOD-ID. getSignElement.
 LINKAGE SECTION.
 01 House    PIC 99.
    88 ValidSignHouse     VALUE 01 THRU 12.
-   
+
 01 OutSignElement        PIC X(5).
 
 01 OpStatus              PIC 9.

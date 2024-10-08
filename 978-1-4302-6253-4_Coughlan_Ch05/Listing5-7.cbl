@@ -4,23 +4,24 @@
 
        DATA DIVISION.
        WORKING-STORAGE SECTION.
-       01 ValidationReturnCode  PIC 9.
-         88 DateIsOK           VALUE 0.
-         88 DateIsInvalid      VALUE 1 THRU 8.
-         88 ValidCodeSupplied  VALUE 0 THRU 8.
+       01  ValidationReturnCode  PIC 9.
+       88    DateIsOK           VALUE 0.
+       88    DateIsInvalid      VALUE 1 THRU 8.
+       88    ValidCodeSupplied  VALUE 0 THRU 8.
 
-       01 DateErrorMessage      PIC X(35) VALUE SPACES.
-         88 DateNotNumeric     VALUE "Error - The date must be numeric".
-         88 YearIsZero         VALUE "Error - The year cannot be zero".
-         88 MonthIsZero        VALUE "Error - The month cannot be zero".
-         88 DayIsZero          VALUE "Error - The day cannot be zero".
-         88 YearPassed         VALUE "Error - Year has already passed".
-         88 MonthTooBig        VALUE "Error - Month is greater than 12".
-         88 DayTooBig          VALUE "Error - Day greater than 31".
-         88 TooBigForMonth     VALUE "Error - Day too big for this month".
+       01  DateErrorMessage      PIC X(35) VALUE SPACES.
+       88   DateNotNumeric     VALUE "Error - The date must be numeric".
+       88   YearIsZero         VALUE "Error - The year cannot be zero".
+       88   MonthIsZero        VALUE "Error - The month cannot be zero".
+       88   DayIsZero          VALUE "Error - The day cannot be zero".
+       88   YearPassed         VALUE "Error - Year has already passed".
+       88   MonthTooBig        VALUE "Error - Month is greater than 12".
+       88   DayTooBig          VALUE "Error - Day greater than 31".
+       88   TooBigForMonth   VALUE "Error - Day too big for this month".
 
        PROCEDURE DIVISION.
        Begin.
+           PERFORM ValidateDate
            PERFORM ValidateDate UNTIL ValidCodeSupplied
            EVALUATE ValidationReturnCode
              WHEN    0   SET DateIsOK       TO TRUE
@@ -44,6 +45,7 @@
            .
 
        ValidateDate.
-           DISPLAY "Enter a validation return code (0-8) " WITH NO ADVANCING
+           DISPLAY "Enter a validation return code (0-8) "
+               WITH NO ADVANCING
            ACCEPT ValidationReturnCode
            .

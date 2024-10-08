@@ -21,10 +21,10 @@ FD BirthsFile.
    02 FemaleDOB.
       03 FemaleDate       PIC X(4).
       03 FILLER           PIC X(4).
- 
+
 
 WORKING-STORAGE SECTION.
-01 MyZodiac   USAGE OBJECT REFERENCE. 
+01 MyZodiac   USAGE OBJECT REFERENCE.
 
 01 Counts.
    02 CompatiblePairs     PIC 9(7)  VALUE ZEROS.
@@ -37,11 +37,11 @@ WORKING-STORAGE SECTION.
    02 ValidRecsPrn        PIC ZZ,ZZZ,ZZ9.
    02 TotalRecs           PIC 9(9) VALUE ZEROS.
    02 TotalRecsPrn        PIC ZZ,ZZZ,ZZ9.
-   
-01 MaleSign           PIC 99.   
+
+01 MaleSign           PIC 99.
 01 FemaleSign         PIC 99.
 01 SumOfSigns         PIC 99.
-       
+
 01 OpStatusM          PIC 9.
    88 ValidMale       VALUE ZEROS.
 
@@ -57,7 +57,7 @@ Begin.
       AT END SET  EndOfFile TO TRUE
    END-READ
    PERFORM ProcessBirthRecs UNTIL EndOfFile
-   
+
    COMPUTE ValidRecs = CompatiblePairs + IncompatiblePairs
    COMPUTE CompatiblePercent ROUNDED   = CompatiblePairs / ValidRecs * 100
    COMPUTE InCompatiblePercent ROUNDED = InCompatiblePairs / ValidRecs * 100
@@ -91,12 +91,12 @@ ProcessBirthRecs.
    INVOKE MyZodiac "getSignHouse" USING BY CONTENT FemaleDate
                                         BY REFERENCE FemaleSign
                                         RETURNING OpStatusF
- 
+
    IF ValidMale AND ValidFemale
       COMPUTE SumOfSigns = MaleSign + FemaleSign
       IF FUNCTION REM(SumOfSigns 2)  = ZERO
          ADD 1 TO CompatiblePairs
-        ELSE 
+        ELSE
          ADD 1 TO IncompatiblePairs
       END-IF
    END-IF
@@ -104,5 +104,5 @@ ProcessBirthRecs.
       AT END SET  EndOfFile TO TRUE
    END-READ.
 
-                    
+
 
